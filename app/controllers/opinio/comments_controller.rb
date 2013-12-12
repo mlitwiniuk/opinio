@@ -10,19 +10,20 @@ class Opinio::CommentsController < ApplicationController
     #@comment = resource.comments.build(params[:comment])
     @comment = resource.comments.build(comment_params)
     @comment.owner = send(Opinio.current_user_method)
-    if @comment.save
-      flash_area = :notice
-      message = t('opinio.messages.comment_sent')
-    else
-      flash_area = :error
-      message = t('opinio.messages.comment_sending_error')
-    end
 
     respond_to do |format|
-      format.js
-      format.html do
-        set_flash(flash_area, message)
-        redirect_to(opinio_after_create_path(resource))
+      if @comment.save
+        format.js
+        format.html do
+          set_flash(flash_area, message)
+          redirect_to(opinio_after_create_path(resource))
+        end
+      else
+        format.js { render :json => @comment.errors, :status => :unprocessable_entity }
+        format.html do
+          set_flash(flash_area, message)
+          redirect_to(opinio_after_create_path(resource))
+        end
       end
     end
   end
