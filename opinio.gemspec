@@ -6,13 +6,13 @@ Gem::Specification.new do |s|
   s.version     = Opinio::Version::VERSION
   s.platform    = Gem::Platform::RUBY
 
-  s.authors     = [ "Luiz Felipe Garcia Pereira" ]
-  s.email       = [ "luiz.felipe.gp@gmail.com" ]
+  s.authors     = [ "Alex Pszczolkowski" ]
+  s.email       = [ "alex@sailsoft.pl" ]
 
-  s.summary     = "A rails 3 engine for comments."
+  s.summary     = "A rails 4 engine for comments."
   s.description = 'Opinio is an engine used to add comments functionallity to rails 3 applications.'
 
-  s.add_dependency( 'rails', '~> 3' )
+  s.add_dependency( 'rails', '~> 4' )
   s.add_dependency( 'kaminari' )
   s.add_dependency( 'jquery-rails' )
 
