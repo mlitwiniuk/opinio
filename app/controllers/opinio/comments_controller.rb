@@ -15,13 +15,13 @@ class Opinio::CommentsController < ApplicationController
       if @comment.save
         format.js
         format.html do
-          set_flash(flash_area, message)
+          set_flash(:notice, t('opinio.messages.comment_sent'))
           redirect_to(opinio_after_create_path(resource))
         end
       else
         format.js { render :json => @comment.errors, :status => :unprocessable_entity }
         format.html do
-          set_flash(flash_area, message)
+          set_flash(:error, t('opinio.messages.comment_sending_error'))
           redirect_to(opinio_after_create_path(resource))
         end
       end
@@ -51,5 +51,5 @@ class Opinio::CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:body)
   end
-  
+
 end
